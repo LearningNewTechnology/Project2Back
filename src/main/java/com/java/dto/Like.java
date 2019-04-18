@@ -1,7 +1,10 @@
-package com.java.controller;
+package com.java.dto;
+
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Like {
-	@NotNull
+	@Id
 	int userId;
-	@NotNull
-	int postId;
+	@ManyToOne
+	List<Post> likedPosts; 
 }
