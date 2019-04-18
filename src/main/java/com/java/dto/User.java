@@ -1,9 +1,13 @@
-package com.java.controller;
+package com.java.dto;
+
+import java.awt.Image;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,6 +26,7 @@ public class User {
 	@Size(min=3, max=30)
 	String username;
 	@NotNull
+	@Size(min=8, max=30)
 	String password;
 	@NotNull
 	String email;
@@ -29,5 +34,7 @@ public class User {
 	String firstName;
 	@NotNull
 	String lastName;
-	//profilePic;
+	Image profilePic;
+	@OneToMany(mappedBy="id")
+	List<Post> postList; //Post.id?
 }
