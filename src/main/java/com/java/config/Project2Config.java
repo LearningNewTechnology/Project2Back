@@ -15,8 +15,8 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.java.controller.Post;
-import com.java.controller.User;
+import com.java.dto.Post;
+import com.java.dto.User;
 
 @ComponentScan("com.java")
 @EnableWebMvc

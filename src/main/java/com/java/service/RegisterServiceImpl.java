@@ -2,7 +2,7 @@ package com.java.service;
 
 import org.springframework.stereotype.Service;
 
-import com.java.controller.User;
+import com.java.dto.User;
 
 @Service
 public class RegisterServiceImpl {
