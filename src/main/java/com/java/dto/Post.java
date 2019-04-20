@@ -1,11 +1,9 @@
 package com.java.dto;
 
-import java.awt.Image;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,7 +24,7 @@ public class Post {
 	//tags;
 	@Size(min=1, max=250)
 	String description;
-	Image picture;
+	//Image picture;
 	@ManyToOne
 	int authorId;
 	@OneToMany(mappedBy="userId")
