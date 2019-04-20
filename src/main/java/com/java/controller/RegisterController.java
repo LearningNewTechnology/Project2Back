@@ -34,9 +34,9 @@ public class RegisterController {
 			return "forward:register";
 		} else {
 			try {
-				// service.addUser(user);
+				service.addUser(user);
 				response.getWriter().println("Inserted successfully");
-				return "forward:login";
+				return "forward:/login";
 			} catch (IOException e) {
 				// TODO: handle exception
 			}

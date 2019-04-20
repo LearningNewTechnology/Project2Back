@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import com.java.dto.User;
 
 @Service
-public class RegisterServiceImpl implements RegisterService{
+public class LoginServiceImpl implements LoginService{
 
 	@Override
-	public User addUser(User user) {
+	public User login(String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}

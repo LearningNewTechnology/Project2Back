@@ -16,26 +16,30 @@ import com.java.dto.User;
 import com.java.service.LoginService;
 
 @Controller
-@RequestMapping("/login.do")
 public class LoginController {
 	@Autowired
 	LoginService service;
 
-	@PostMapping
+	@PostMapping("/login.do")
 	public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam String username, @RequestParam String password) {
 		User user = null;
-		// user = service.login(username, password);
+		user = service.login(username, password);
 		if (user != null && user.getUsername().equals(username) && user.getPassword().equals(password)) {
 			request.getSession().setAttribute("User", user);
-			return "forward:home";
+			return "forward:/home";
 		}else {
 			try {
 				response.getWriter().println("Invalid login");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
 		return null;
+	}
+	
+	@GetMapping("/login.do")
+	public String testGet() {
+		return "login";
 	}
 }
