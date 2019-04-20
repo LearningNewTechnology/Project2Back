@@ -29,8 +29,14 @@ public class LoginController {
 		user = new User();
 		user.setUsername(username);
 		user.setPassword(password);*/
-		//user = service.login(username, password);
-		System.out.println(user);
+		User currUser = new User();
+		//user.setUsername("sebenner");
+		//user.setPassword("pass1");
+		//currUser = service.login(username, password);
+		currUser = service.login("ebenner", "pass");
+		
+		System.out.println("currUser = "+ currUser);
+		System.out.println("user = "+ user);
 		if (user != null && "jtran".equals(user.getUsername()) && "pass".equals(user.getPassword())) {
 			System.out.println("Login successful");
 			request.getSession().setAttribute("User", user);

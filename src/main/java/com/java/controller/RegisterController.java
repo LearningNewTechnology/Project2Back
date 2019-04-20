@@ -19,11 +19,13 @@ import com.java.dto.User;
 import com.java.service.LoginService;
 import com.java.service.RegisterService;
 
+/*
 @Controller
 @RequestMapping("/register.do")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")*/
 public class RegisterController {
 
+	/*
 	@Autowired
 	private RegisterService service;
 
@@ -45,5 +47,5 @@ public class RegisterController {
 		}
 		return null;
 	}
-
+*/
 }

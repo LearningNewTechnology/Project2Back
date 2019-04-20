@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.dto.Post;
 
+/*
 @Controller
 @RequestMapping("/posts.do")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")*/
 public class PostController {
-	
+	/*
 	public Post getPost() {
 		return null;
 	}
@@ -35,5 +36,5 @@ public class PostController {
 	
 	public void unLikePost() {
 		
-	}
+	}*/
 }

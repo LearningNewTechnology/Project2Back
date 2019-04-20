@@ -8,13 +8,13 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
 @Data
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor*/
 public class Like {
-	@Id
+	/*@Id
 	int userId;
 	@ManyToOne
-	List<Post> likedPosts; 
+	List<Post> likedPosts; */
 }

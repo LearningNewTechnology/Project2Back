@@ -12,12 +12,12 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
 @Data
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor*/
 public class Post {
-	@Id
+	/*@Id
 	@GeneratedValue
 	int id;
 	Date postedDate;
@@ -28,5 +28,5 @@ public class Post {
 	@ManyToOne
 	int authorId;
 	@OneToMany(mappedBy="userId")
-	List<Like> like;
+	List<Like> like;*/
 }

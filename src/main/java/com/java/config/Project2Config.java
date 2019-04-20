@@ -41,7 +41,7 @@ public class Project2Config {
 	public SessionFactory sessionFactory() {
 		Configuration cfg = new Configuration();
 		// create the schema
-		cfg.setProperty(Environment.HBM2DDL_AUTO, "create");
+		//cfg.setProperty(Environment.HBM2DDL_AUTO, "create");
 		cfg.addAnnotatedClass(User.class);
 		cfg.addAnnotatedClass(Post.class);
 		// To which db, it should generate sql queries

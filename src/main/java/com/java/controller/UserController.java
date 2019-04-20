@@ -24,10 +24,11 @@ import com.google.gson.Gson;
 import com.java.dto.User;
 import com.java.service.UserService;
 
+/*
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")*/
 public class UserController {
-	
+	/*
 	@Autowired
 	UserService Service;
 	
@@ -54,5 +55,5 @@ public class UserController {
 	public void updateUser(User user) {
 		Service.updateUser(user);
 	}
-	
+	*/
 }

@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(
+@Table(name="users",
 		uniqueConstraints = @UniqueConstraint(columnNames={"username", "email"})		
 )
 public class User {
@@ -40,6 +40,6 @@ public class User {
 	@NotNull
 	String lastName;
 	//Image profilePic;
-	@OneToMany(mappedBy="id")
-	List<Post> postList; //Post.id?
+	//@OneToMany(mappedBy="id")
+	//List<Post> postList; //Post.id?
 }
