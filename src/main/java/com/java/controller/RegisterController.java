@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,11 @@ import com.java.service.RegisterService;
 
 @Controller
 @RequestMapping("/register.do")
+@CrossOrigin(origins="http://localhost:4200")
 public class RegisterController {
 
 	@Autowired
-	RegisterService service;
+	private RegisterService service;
 
 	@PostMapping
 	public String registerUser(@Valid @ModelAttribute User user, BindingResult result, HttpServletResponse response) {
