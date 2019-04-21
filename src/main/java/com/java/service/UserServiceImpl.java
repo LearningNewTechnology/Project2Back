@@ -14,26 +14,17 @@ public class UserServiceImpl implements UserService{
 	@Autowired UserRepository rep;
 	@Override
 	public User getUser(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return rep.getUserByUsername(username);
 	}
 
 	@Override
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		return rep.getUsers();
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		rep.updateUser(user);
 	}
 
 }
