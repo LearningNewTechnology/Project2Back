@@ -38,8 +38,7 @@ public class UserRepositoryImpl implements UserRepository{
 		q.setParameter("uId", userId);
 		User currUser = q.uniqueResult();
 		s.close();
-		return currUser;
-		
+		return currUser;	
 	}
 
 	@Override
@@ -53,12 +52,12 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public void updateUser(User currUser) {
-		/*
+		
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.update(currUser);
 		tx.commit();
-		s.close();*/
+		s.close();
 	}
 
 	@Override
