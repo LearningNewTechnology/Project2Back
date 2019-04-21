@@ -45,11 +45,11 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public void registerUser(User newUser) {
-		/*Session s = sf.openSession();
+		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.save(newUser);
 		tx.commit();
-		s.close();*/
+		s.close();
 	}
 
 	@Override

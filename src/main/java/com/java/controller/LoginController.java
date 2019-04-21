@@ -24,27 +24,15 @@ public class LoginController {
 	private LoginService service;
 
 	@PostMapping("/login.do")
-	public String login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute User user/*@RequestParam String username, @RequestParam String password*/) {
-		/*User user = null;
-		user = new User();
-		user.setUsername(username);
-		user.setPassword(password);*/
-		User currUser = new User();
-		//user.setUsername("sebenner");
-		//user.setPassword("pass1");
-		//currUser = service.login(username, password);
-		currUser = service.login("ebenner", "pass");
+	public String login(HttpServletRequest request, HttpServletResponse response, @ModelAttribute User user) {
+		User currUser = null;
+		currUser = service.login(user.getUsername(), user.getPassword());
 		
 		System.out.println("currUser = "+ currUser);
 		System.out.println("user = "+ user);
-		if (user != null && "jtran".equals(user.getUsername()) && "pass".equals(user.getPassword())) {
-			System.out.println("Login successful");
+		if (currUser != null && user.getUsername().equals(currUser.getUsername()) && user.getPassword().equals(currUser.getPassword())) {
 			request.getSession().setAttribute("User", user);
 			return "home";
-		}
-		/*if (user != null && user.getUsername().equals(username) && user.getPassword().equals(password)) {
-			request.getSession().setAttribute("User", user);
-			return "forward:/home";
 		}else {
 			try {
 				response.getWriter().println("Invalid login");
@@ -52,7 +40,7 @@ public class LoginController {
 				
 				e.printStackTrace();
 			}
-		}*/
+		}
 		return null;
 	}
 	

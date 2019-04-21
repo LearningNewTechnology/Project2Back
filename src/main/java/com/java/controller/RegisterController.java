@@ -19,13 +19,13 @@ import com.java.dto.User;
 import com.java.service.LoginService;
 import com.java.service.RegisterService;
 
-/*
+
 @Controller
 @RequestMapping("/register.do")
-@CrossOrigin(origins="http://localhost:4200")*/
+@CrossOrigin(origins="http://localhost:4200")
 public class RegisterController {
 
-	/*
+	
 	@Autowired
 	private RegisterService service;
 
@@ -35,17 +35,17 @@ public class RegisterController {
 			// response.getWriter().println(result.getAllErrors().stream().map(x ->
 			// x.getDefaultMessage()).collect(collector));
 
-			return "forward:register";
+			return "register";
 		} else {
 			try {
 				service.addUser(user);
 				response.getWriter().println("Inserted successfully");
-				return "forward:/login";
+				return "login";
 			} catch (IOException e) {
 				// TODO: handle exception
 			}
 		}
 		return null;
 	}
-*/
+
 }

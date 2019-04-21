@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 import com.java.dto.User;
 import com.java.repository.UserRepository;
 
-//@Service
+@Service
 public class RegisterServiceImpl implements RegisterService{
 
-	//@Autowired UserRepository rep;
+	@Autowired UserRepository rep;
 	@Override
 	public User addUser(User user) {
-		// TODO Auto-generated method stub
+		rep.registerUser(user);
 		return null;
 	}
 
