@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements UserRepository{
 	SessionFactory sf;
 	
 	@Override
-	public User getUser(String usrname/*, String hashedPassword*/) {
+	public User getUserByUsername(String usrname/*, String hashedPassword*/) {
 		Session s = sf.openSession();
 		//Query<User> q = s.createQuery("From User Where username = :uName And password = :uPass", User.class);
 		Query<User> q = s.createQuery("From User Where username = :uName", User.class);
@@ -33,13 +33,12 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public User getUserById(int userId) {
-		return null;
-		/*Session s = sf.openSession();
+		Session s = sf.openSession();
 		Query<User> q = s.createQuery("From User Where id = :uId", User.class);
 		q.setParameter("uId", userId);
-		List<User> list= q.list();
+		User currUser = q.uniqueResult();
 		s.close();
-		return list.get(0);*/
+		return currUser;
 		
 	}
 
@@ -60,5 +59,14 @@ public class UserRepositoryImpl implements UserRepository{
 		s.update(currUser);
 		tx.commit();
 		s.close();*/
+	}
+
+	@Override
+	public List<User> getUsers() {
+		Session s = sf.openSession();
+		Query<User> q = s.createQuery("From User", User.class);
+		List<User> list = q.list();
+		s.close();
+		return list;
 	}
 }

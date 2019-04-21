@@ -12,7 +12,7 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired UserRepository rep;
 	@Override
 	public User login(String username, String password) {
-		return rep.getUser(username);
+		return rep.getUserByUsername(username);
 		//return null;
 	}
 
