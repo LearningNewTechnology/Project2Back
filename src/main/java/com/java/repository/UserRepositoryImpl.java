@@ -20,11 +20,11 @@ public class UserRepositoryImpl implements UserRepository{
 	SessionFactory sf;
 	
 	@Override
-	public User getUserByUsername(String usrname/*, String hashedPassword*/) {
+	public User getUserByUsername(String username/*, String hashedPassword*/) {
 		Session s = sf.openSession();
 		//Query<User> q = s.createQuery("From User Where username = :uName And password = :uPass", User.class);
 		Query<User> q = s.createQuery("From User Where username = :uName", User.class);
-		q.setParameter("uName", usrname);
+		q.setParameter("uName", username);
 		//q.setParameter("uPass", hashedPassword);
 		User currUser = q.uniqueResult();
 		s.close();
