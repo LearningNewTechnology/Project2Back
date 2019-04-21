@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.java.dto.User;
 import com.java.repository.UserRepository;
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService{
 
-	//@Autowired UserRepository rep;
+	@Autowired UserRepository rep;
 	@Override
 	public User getUser(String username) {
 		// TODO Auto-generated method stub

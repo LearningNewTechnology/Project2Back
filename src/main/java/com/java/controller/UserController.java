@@ -30,30 +30,25 @@ import com.java.service.UserService;
 public class UserController {
 	
 	@Autowired
-	UserService Service;
+	UserService service;
 	
 	@GetMapping("/getUser.do")
 	public User getUser(String username) {
 		User user = null;
-		user = Service.getUser(username);
+		user = service.getUser(username);
 		return user;
 	}
 	
 	@GetMapping("/getUsers.do")
 	public List<User> getUsers() {
 		List<User> list = null;
-		list = Service.getUsers();
+		list = service.getUsers();
 		return list;
-	}
-	
-	@PostMapping("/addUser.do")
-	public void addUser(@Valid @ModelAttribute User user) {
-		Service.addUser(user);
 	}
 	
 	@PutMapping("/updateUser.do")
 	public void updateUser(User user) {
-		Service.updateUser(user);
+		service.updateUser(user);
 	}
 	
 }
