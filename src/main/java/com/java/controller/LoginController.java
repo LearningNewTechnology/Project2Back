@@ -38,6 +38,7 @@ public class LoginController {
 		}else {
 			try {
 				response.getWriter().println("Invalid login");
+				return new User();
 			} catch (IOException e) {
 				
 				e.printStackTrace();
