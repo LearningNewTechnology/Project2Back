@@ -20,7 +20,7 @@ import com.java.dto.User;
 import com.java.service.LoginService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 public class LoginController {
 	@Autowired
 	private LoginService service;

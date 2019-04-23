@@ -23,7 +23,7 @@ import com.java.service.RegisterService;
 
 @RestController
 @RequestMapping("/register.do")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 public class RegisterController {
 
 	
