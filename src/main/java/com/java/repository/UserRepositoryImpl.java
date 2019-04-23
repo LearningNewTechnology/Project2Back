@@ -55,6 +55,7 @@ public class UserRepositoryImpl implements UserRepository{
 		
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
+		//s.merge(currUser);
 		s.update(currUser);
 		tx.commit();
 		s.close();
