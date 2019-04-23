@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +32,11 @@ public class RegisterController {
 	private RegisterService service;
 
 	@PostMapping(produces="application/text")
-	public String registerUser(@Valid @ModelAttribute User user, BindingResult result, HttpServletResponse response) {
+	public String registerUser(@Valid @RequestBody User user, BindingResult result, HttpServletResponse response) {
 		if (result.hasErrors()) {
 			// response.getWriter().println(result.getAllErrors().stream().map(x ->
 			// x.getDefaultMessage()).collect(collector));
-
+			//System.out.println(user);
 			return "Fail";
 		} else {
 			try {
