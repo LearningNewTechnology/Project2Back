@@ -2,37 +2,61 @@ package com.java.repository;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.java.dto.Post;
+import com.java.dto.User;
 
-//@Repository
+@Repository
 public class PostRepositoryImpl implements PostRepository{
 
-	//@Autowired
+	@Autowired 
+	@Qualifier("sessionFactory")
+	SessionFactory sf;
 	@Override
 	public Post getPostById(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.openSession();
+		Query<Post> q = s.createQuery("From Post Where id = :pId", Post.class);
+		q.setParameter("pId", postId);
+		Post currPost = q.uniqueResult();
+		s.close();
+		return currPost;
 	}
 
 	@Override
 	public List<Post> getPostsOfUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.openSession();
+		Query<Post> q = s.createQuery("From Post Where id = :uId", Post.class);
+		q.setParameter("uId", userId);
+		List<Post> posts = q.list();
+		s.close();
+		return posts;
+	}
+
+	//@Transactional
+	@Override
+	public void updatePost(Post currPost) {
+		Session s=sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.update(currPost);
+		tx.commit();
+		s.close();
 	}
 
 	@Override
-	public Post updatePost(Post currPost) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Post insertPost(Post currPost) {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertPost(Post currPost) {
+		Session s=sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(currPost);
+		tx.commit();
+		s.close();
 	}
 
 }

@@ -31,7 +31,6 @@ public class User {
 
 	String username;
 	@NotNull
-	@Size(min=8, max=30)
 	String password;
 	@NotNull
 	String email;
@@ -39,7 +38,7 @@ public class User {
 	String firstName;
 	@NotNull
 	String lastName;
-	//Image profilePic;
+	String profilePic;
 	//@OneToMany(mappedBy="id")
 	//List<Post> postList; //Post.id?
 }
