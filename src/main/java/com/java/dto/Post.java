@@ -12,21 +12,20 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-/*
+
 @Data
 @Entity
-@NoArgsConstructor*/
+@NoArgsConstructor
 public class Post {
-	/*@Id
+	@Id
 	@GeneratedValue
 	int id;
 	Date postedDate;
 	//tags;
 	@Size(min=1, max=250)
 	String description;
-	//Image picture;
-	@ManyToOne
+	String picture;
 	int authorId;
-	@OneToMany(mappedBy="userId")
+	/*@OneToMany(mappedBy="userId")
 	List<Like> like;*/
 }

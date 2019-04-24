@@ -9,10 +9,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.java.dto.Post;
-import com.java.dto.User;
 
 @Repository
 public class PostRepositoryImpl implements PostRepository{
@@ -33,7 +31,7 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public List<Post> getPostsOfUser(int userId) {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post Where id = :uId", Post.class);
+		Query<Post> q = s.createQuery("From Post Where authorId = :uId", Post.class);
 		q.setParameter("uId", userId);
 		List<Post> posts = q.list();
 		s.close();
