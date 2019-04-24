@@ -36,15 +36,15 @@ public class UserController {
 	}
 
 	@PutMapping("/updateUser.do")
-	public String updateUser(@RequestBody User user, HttpServletRequest request) {
+	public User updateUser(@RequestBody User user, HttpServletRequest request) {
 		User currUser = (User) request.getSession().getAttribute("User");
 		if (currUser != null) {
 			user.setId(currUser.getId());
 			service.updateUser(user);
-			return "Success";
+			return user;
 		}
 		else {
-			return "Fail";
+			return new User();
 		}
 	}
 
