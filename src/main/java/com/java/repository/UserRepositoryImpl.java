@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.java.controller.MD5;
 import com.java.dto.User;
 
 @Repository
@@ -45,6 +46,10 @@ public class UserRepositoryImpl implements UserRepository{
 	public void registerUser(User newUser) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
+		//encrypt before save
+		MD5 encryption= new MD5();
+		//System.out.println(encryption.encrypt(newUser.getPassword()));
+		newUser.setPassword(encryption.encrypt(newUser.getPassword()));
 		s.save(newUser);
 		tx.commit();
 		s.close();
