@@ -34,15 +34,10 @@ public class RegisterController {
 			//System.out.println(user);
 			return "Fail";
 		} else {
-			try {
-				service.addUser(user);
-				response.getWriter().println("Inserted successfully");
-				return "Success";
-			} catch (IOException e) {
-				// TODO: handle exception
-			}
+			service.addUser(user);
+			//response.getWriter().println("Inserted successfully");
+			return "Success";
 		}
-		return null;
 	}
 
 }
