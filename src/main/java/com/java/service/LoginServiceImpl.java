@@ -13,7 +13,6 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public User login(String username, String password) {
 		return rep.getUserByUsername(username);
-		//return null;
 	}
 
 }

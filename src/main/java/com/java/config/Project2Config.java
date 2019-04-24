@@ -12,9 +12,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.java.dto.Post;
 import com.java.dto.User;
 
@@ -29,6 +36,10 @@ public class Project2Config {
 	String username;
 	@Value("${driverClassName}")
 	String driverClassName;
+	@Value("${accessKey}")
+	String accessKey;
+	@Value("${secretKey}")
+	String secretKey;
 
 	@Bean
 	@RequestScope
@@ -70,4 +81,20 @@ public class Project2Config {
 		vr.setSuffix(".html");
 		return vr;
 	}
+	
+	@Bean
+	public AmazonS3 s3Client() {
+		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		
+		return AmazonS3ClientBuilder.standard()
+				.withCredentials(new AWSStaticCredentialsProvider(credentials))
+				.withRegion(Regions.US_EAST_2).build();
+	}
+	
+	@Bean
+    public CommonsMultipartResolver multipartResolver(){
+
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        return resolver;
+    }
 }

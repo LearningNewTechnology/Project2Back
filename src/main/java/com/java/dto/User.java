@@ -42,7 +42,7 @@ public class User {
 	String firstName;
 	@NotNull
 	String lastName;
-	//Image profilePic;
+	String profilePic;
 	//@OneToMany(mappedBy="id")
 	//List<Post> postList; //Post.id?
 	public int getId() {
