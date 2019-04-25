@@ -10,4 +10,5 @@ public interface UserRepository {
 	public List<User> getUsers();
 	public void registerUser(User newUser);
 	public void updateUser(User currUser);
+	public List<User> getUserslikeUsername(String usrname);
 }

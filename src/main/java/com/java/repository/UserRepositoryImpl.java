@@ -74,4 +74,15 @@ public class UserRepositoryImpl implements UserRepository{
 		s.close();
 		return list;
 	}
+
+	@Override
+	public List<User> getUserslikeUsername(String usrname) {
+		Session s = sf.openSession();
+		Query<User> q = s.createQuery("From User Where Username Like :uName", User.class);
+		q.setParameter("uName", "%"+usrname+"%");
+		List<User> list = q.list();
+		s.close();
+		return list;
+		
+	}
 }
