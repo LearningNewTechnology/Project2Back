@@ -1,7 +1,9 @@
 package com.java.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +32,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Set<User> searchUsers(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> list = rep.getUserslikeUsername(username);
+		return list.stream().collect(Collectors.toCollection(HashSet::new));
 	}
 
 }

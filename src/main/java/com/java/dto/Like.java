@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*@Data
+@Data
 @Entity
-@NoArgsConstructor*/
+@NoArgsConstructor
 public class Like {
-	/*@Id
-	int userId;
 	@Id
-	int postId; */
+	int id;
+	int userId;
+	int postId; 
 }

@@ -58,7 +58,7 @@ public class UserController {
 	}
 
 	@GetMapping("/searchUsers.do")
-	public Set<User> searchUsers(@RequestBody String username){
-		return null;
+	public Set<User> searchUsers(@RequestParam String username){
+		return service.searchUsers(username);
 	}
 }
