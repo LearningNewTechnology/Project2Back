@@ -26,7 +26,10 @@ public class Post {
 	@Size(min=1, max=250)
 	String description;
 	String picture;
+	@ManyToOne
 	int authorId;
+	//@OneToMany(mappedBy="userId")
+	//List<Integer> likedBy;			//userId
 	/*@OneToMany(mappedBy="userId")
 	List<Like> like;*/
 }

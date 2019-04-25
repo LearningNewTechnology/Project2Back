@@ -1,5 +1,7 @@
 package com.java.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +30,7 @@ public class LikeRepositoryImpl implements LikeRespository{
 	}
 
 	@Override
-	public Like userLikes(int userId, int postId) {
+	public List<Like> userLikes(int userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
