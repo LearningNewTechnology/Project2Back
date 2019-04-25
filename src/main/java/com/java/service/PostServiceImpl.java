@@ -11,21 +11,42 @@ import com.java.repository.PostRepository;
 @Service
 public class PostServiceImpl implements PostService{
 
-	//@Autowired PostRepository rep;
+	@Autowired PostRepository rep;
+	
 	@Override
 	public Post getPost(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return rep.getPostById(id);
 	}
 
 	@Override
 	public List<Post> getPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		return rep.getPosts();
 	}
 
 	@Override
 	public void addPost(Post post) {
+		rep.insertPost(post);
+	}
+
+	@Override
+	public List<Post> getPostsFromListUser(int id) {
+		return rep.getPostsOfUser(id);
+	}
+
+	@Override
+	public void updatePost() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void likePost() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unLikePost() {
 		// TODO Auto-generated method stub
 		
 	}

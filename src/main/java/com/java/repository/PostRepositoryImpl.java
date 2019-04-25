@@ -57,4 +57,13 @@ public class PostRepositoryImpl implements PostRepository{
 		s.close();
 	}
 
+	@Override
+	public List<Post> getPosts() {
+		Session s = sf.openSession();
+		Query<Post> q = s.createQuery("From Post", Post.class);
+		List<Post> posts = q.list();
+		s.close();
+		return posts;
+	}
+
 }
