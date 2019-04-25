@@ -10,12 +10,12 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*@Data
+@Data
 @Entity
-@NoArgsConstructor*/
+@NoArgsConstructor
 public class Like {
-	/*@Id
+	//@Id
 	int userId;
-	@Id
-	int postId; */
+	//@Id
+	int postId;
 }
