@@ -1,5 +1,6 @@
 package com.java.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Post {
 	@Id
 	@GeneratedValue
 	int id;
-	Date postedDate;
+	LocalDateTime postedDate;
 	//tags;
 	@Size(min=1, max=250)
 	String description;
