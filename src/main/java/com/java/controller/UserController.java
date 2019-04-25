@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,7 +58,7 @@ public class UserController {
 	}
 
 	@GetMapping("/searchUsers.do")
-	public List<User> searchUsers(@RequestBody String username){
+	public Set<User> searchUsers(@RequestBody String username){
 		return null;
 	}
 }
