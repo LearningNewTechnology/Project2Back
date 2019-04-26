@@ -1,5 +1,0 @@
-FROM java:8u111-jdk
-
-ADD maven/AppointmentService.jar .
-
-CMD ["java", "-jar", "AppointmentService.jar"]
