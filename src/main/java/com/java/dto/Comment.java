@@ -1,37 +1,30 @@
 package com.java.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
-public class Post {
+public class Comment {
 	@Id
 	@GeneratedValue
 	int id;
 	@NotNull
-	LocalDateTime postedDate;
-	//tags;
+	LocalDateTime commentDate;
 	@Size(min=1, max=250)
 	String description;
-	String picture;
-	//@ManyToOne
 	@NotNull
 	int authorId;
-	@OneToMany(mappedBy="id")
-	List<Like> like;
+	@NotNull
+	int postId;
 }
