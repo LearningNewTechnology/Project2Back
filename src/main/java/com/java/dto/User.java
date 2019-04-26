@@ -47,6 +47,8 @@ public class User {
 	String profilePic;
 	@OneToMany(mappedBy="authorId", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	List<Post> postList; //Post.id?
+	/*@OneToMany(mappedBy="userId")
+	List<Like> likes;*/
 	
 	public int getId() {
 		return id;
