@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.java.dto.Like;
-import com.java.dto.User;
 
 @Repository
 public class LikeRepositoryImpl implements LikeRespository{

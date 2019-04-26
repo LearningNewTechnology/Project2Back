@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -30,12 +31,15 @@ public class Post {
 	@GeneratedValue
 	int id;
 	@JsonSerialize(using = JsonDateSerializer.class)
+	@NotNull
 	LocalDateTime postedDate;
 	// tags;
 	@Size(min = 1, max = 250)
 	String description;
 	String picture;
-	// @ManyToOne
+
+	//@ManyToOne
+	@NotNull
 	int authorId;
 	@OneToMany(mappedBy = "postId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	List<Like> likedBy; // userId
