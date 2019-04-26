@@ -31,7 +31,7 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public List<Post> getPostsOfUser(int userId) {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post Where authorId = :uId", Post.class);
+		Query<Post> q = s.createQuery("From Post Where authorId = :uId Order By postedDate DESC", Post.class);
 		q.setParameter("uId", userId);
 		List<Post> posts = q.list();
 		s.close();
@@ -60,7 +60,7 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public List<Post> getPosts() {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post", Post.class);
+		Query<Post> q = s.createQuery("From Post Order By postedDate DESC", Post.class);
 		List<Post> posts = q.list();
 		s.close();
 		return posts;

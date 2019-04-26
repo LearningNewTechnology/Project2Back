@@ -22,7 +22,7 @@ public class CommentRepositoryImpl implements CommentRepository{
 	@Override
 	public List<Comment> getComments(int postId) {
 		Session s = sf.openSession();
-		Query<Comment> q = s.createQuery("From Comment Where postId = :pId", Comment.class);
+		Query<Comment> q = s.createQuery("From Comment Where postId = :pId Order By commentDate ASC", Comment.class);
 		q.setParameter("pId", postId);
 		List<Comment> list = q.list();
 		s.close();
