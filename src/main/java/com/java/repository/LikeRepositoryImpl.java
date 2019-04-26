@@ -2,23 +2,32 @@ package com.java.repository;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.java.dto.Like;
 
-//@Repository
+@Repository
 public class LikeRepositoryImpl implements LikeRespository{
 
-	//@Autowired
+	@Autowired 
+	@Qualifier("sessionFactory")
+	SessionFactory sf;
+	
 	@Override
-	public void insertLike(int userId, int postId) {
-		// TODO Auto-generated method stub
-		
+	public void insertLike(Like like) {
+		Session s=sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(like);
+		tx.commit();
 	}
 
 	@Override
-	public void deleteLike(int userId, int postId) {
+	public void deleteLike(Like like) {
 		// TODO Auto-generated method stub
 		
 	}

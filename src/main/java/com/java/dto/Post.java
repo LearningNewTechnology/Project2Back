@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -28,8 +30,8 @@ public class Post {
 	String picture;
 	//@ManyToOne
 	int authorId;
-	/*@OneToMany(mappedBy="postId")
-	List<Like> likedBy;	*/		//userId
+	@OneToMany(mappedBy="postId", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	List<Like> likedBy;			//userId
 	/*@OneToMany(mappedBy="userId")
 	List<Like> like;*/
 }
