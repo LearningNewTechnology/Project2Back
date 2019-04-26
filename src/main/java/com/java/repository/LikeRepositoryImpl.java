@@ -26,7 +26,6 @@ public class LikeRepositoryImpl implements LikeRespository{
 		s.save(like);
 		tx.commit();
 		s.close();
-		
 	}
 
 	@Override

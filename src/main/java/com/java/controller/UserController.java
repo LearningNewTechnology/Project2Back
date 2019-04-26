@@ -28,7 +28,7 @@ public class UserController {
 	UploadUtil util;
 
 	@GetMapping("/getUser.do")
-	public User getUser(String username) {
+	public User getUser(@RequestParam String username) {
 		User user = null;
 		user = service.getUser(username);
 		return user;

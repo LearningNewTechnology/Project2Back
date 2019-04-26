@@ -45,7 +45,7 @@ public class PostController {
 	}
 
 	@PostMapping("/addPost.do")
-	public Post addPost(@RequestBody Post post, @RequestParam(required=false) MultipartFile file,HttpServletRequest request) {
+	public Post addPost(@RequestParam(required=false, name="file") MultipartFile file, @RequestBody Post post, HttpServletRequest request) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		User user = (User) request.getSession().getAttribute("User");
@@ -65,14 +65,6 @@ public class PostController {
 	}
 
 	public void updatePost() {
-
-	}
-
-	public void likePost() {
-
-	}
-
-	public void unLikePost() {
 
 	}
 }

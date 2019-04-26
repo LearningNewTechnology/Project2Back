@@ -14,6 +14,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.google.gson.annotations.JsonAdapter;
 
 import lombok.Data;
@@ -45,10 +48,12 @@ public class User {
 	@NotNull
 	String lastName;
 	String profilePic;
-	@OneToMany(mappedBy="authorId", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="authorId", cascade=CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	List<Post> postList; //Post.id?
-	/*@OneToMany(mappedBy="userId")
-	List<Like> likes;*/
+	@OneToMany(mappedBy="userId", cascade=CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	List<Like> likes;
 	
 	public int getId() {
 		return id;

@@ -22,6 +22,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.java.dto.Like;
 import com.java.dto.Post;
 import com.java.dto.User;
 
@@ -55,6 +56,7 @@ public class Project2Config {
 		//cfg.setProperty(Environment.HBM2DDL_AUTO, "create");
 		cfg.addAnnotatedClass(User.class);
 		cfg.addAnnotatedClass(Post.class);
+		cfg.addAnnotatedClass(Like.class);
 		// To which db, it should generate sql queries
 		cfg.setProperty(Environment.DIALECT, "org.hibernate.dialect.OracleDialect");
 		cfg.setProperty("hibernate.connection.username", username);

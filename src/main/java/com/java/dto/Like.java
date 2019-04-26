@@ -1,8 +1,11 @@
 package com.java.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +13,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Like {
-	/*@GeneratedValue
-	@Id
+@Table(name="Likes")
+public class Like implements Serializable{
+	/*@Id
+	@GeneratedValue
 	int id;*/
 	@Id
 	int userId;
