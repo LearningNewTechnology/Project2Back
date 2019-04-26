@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
@@ -28,8 +29,6 @@ public class Post {
 	String picture;
 	@ManyToOne
 	int authorId;
-	//@OneToMany(mappedBy="userId")
-	//List<Integer> likedBy;			//userId
-	/*@OneToMany(mappedBy="userId")
-	List<Like> like;*/
+	@OneToMany(mappedBy="id")
+	List<Like> like;
 }
