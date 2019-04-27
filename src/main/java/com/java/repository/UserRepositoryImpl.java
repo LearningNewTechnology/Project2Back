@@ -52,7 +52,6 @@ public class UserRepositoryImpl implements UserRepository{
 		Transaction tx = s.beginTransaction();
 		//encrypt before save
 		MD5 encryption= new MD5();
-		//System.out.println(encryption.encrypt(newUser.getPassword()));
 		newUser.setPassword(encryption.encrypt(newUser.getPassword()));
 		s.save(newUser);
 		try {
@@ -89,6 +88,10 @@ public class UserRepositoryImpl implements UserRepository{
 			User existingUser = q2.uniqueResult();
 			if(existingUser == null)
 				user.setUsername(currUser.getUsername());
+		}
+		if(currUser.getPassword() != null) {
+			MD5 encryption= new MD5();
+			user.setPassword(encryption.encrypt(currUser.getPassword()));
 		}
 		//s.merge(currUser);
 		s.update(user);
