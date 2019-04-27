@@ -1,10 +1,14 @@
 package com.java.repository;
 
+
 import java.util.List;
+
+import javax.persistence.PersistenceException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public void registerUser(User newUser) {
+	public User registerUser(User newUser) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		//encrypt before save
@@ -51,8 +55,16 @@ public class UserRepositoryImpl implements UserRepository{
 		//System.out.println(encryption.encrypt(newUser.getPassword()));
 		newUser.setPassword(encryption.encrypt(newUser.getPassword()));
 		s.save(newUser);
-		tx.commit();
+		try {
+			tx.commit();
+		}
+		catch(PersistenceException e) {
+			System.out.println(e.getMessage());
+			s.close();
+			return null;
+		}
 		s.close();
+		return newUser;
 	}
 
 	@Override

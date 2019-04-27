@@ -27,7 +27,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name="users",
-		uniqueConstraints = @UniqueConstraint(columnNames={"username", "email"})		
+		uniqueConstraints = {
+				@UniqueConstraint(columnNames={"username"}),
+				@UniqueConstraint(columnNames={"email"})
+		}
 )
 @DynamicUpdate(value=true)
 public class User {

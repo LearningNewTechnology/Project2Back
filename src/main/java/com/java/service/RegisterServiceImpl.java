@@ -12,8 +12,8 @@ public class RegisterServiceImpl implements RegisterService{
 	@Autowired UserRepository rep;
 	@Override
 	public User addUser(User user) {
-		rep.registerUser(user);
-		return null;
+		return rep.registerUser(user);
+		//return null;
 	}
 
 }

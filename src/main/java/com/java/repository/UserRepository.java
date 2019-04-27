@@ -8,7 +8,7 @@ public interface UserRepository {
 	public User getUserByUsername(String usrname/*, String hashedPassword*/);
 	public User getUserById(int userId);
 	public List<User> getUsers();
-	public void registerUser(User newUser);
+	public User registerUser(User newUser);
 	public void updateUser(User currUser);
 	public List<User> getUserslikeUsername(String usrname);
 }
