@@ -74,22 +74,22 @@ public class UserRepositoryImpl implements UserRepository{
 		q1.setParameter("uId", currUser.getId());
 		User user = q1.uniqueResult();
 		
-		if(currUser.getEmail() != null && currUser.getEmail() != "")
+		if(currUser.getEmail() != null || currUser.getEmail() != "")
 			user.setEmail(currUser.getEmail());
-		if(currUser.getFirstName() != null && currUser.getFirstName() != "")
+		if(currUser.getFirstName() != null || currUser.getFirstName() != "")
 			user.setFirstName(currUser.getFirstName());
-		if(currUser.getLastName() != null && currUser.getLastName() != "")
+		if(currUser.getLastName() != null || currUser.getLastName() != "")
 			user.setLastName(currUser.getLastName());
-		if(currUser.getProfilePic() != null && currUser.getProfilePic() != "")
+		if(currUser.getProfilePic() != null || currUser.getProfilePic() != "")
 			user.setProfilePic(currUser.getProfilePic());
-		if(currUser.getUsername() != null && currUser.getUsername() != "") {
+		if(currUser.getUsername() != null || currUser.getUsername() != "") {
 			Query<User> q2 = s.createQuery("From User Where username = :uUsername", User.class);
 			q2.setParameter("uUsername", currUser.getUsername());
 			User existingUser = q2.uniqueResult();
 			if(existingUser == null)
 				user.setUsername(currUser.getUsername());
 		}
-		if(currUser.getPassword() != null && currUser.getPassword() != "") {
+		if(currUser.getPassword() != null || currUser.getPassword() != "") {
 			MD5 encryption= new MD5();
 			user.setPassword(encryption.encrypt(currUser.getPassword()));
 		}
