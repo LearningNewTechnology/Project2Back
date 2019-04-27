@@ -22,7 +22,7 @@ import com.java.service.PostService;
 import com.java.util.UploadUtil;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders="*")
 public class PostController {
 	@Autowired
 	PostService service;
