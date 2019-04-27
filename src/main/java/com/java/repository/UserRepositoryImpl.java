@@ -43,7 +43,7 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public void registerUser(User newUser) {
+	public User registerUser(User newUser) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		//encrypt before save
@@ -53,6 +53,7 @@ public class UserRepositoryImpl implements UserRepository{
 		s.save(newUser);
 		tx.commit();
 		s.close();
+		return newUser;
 	}
 
 	@Override

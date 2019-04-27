@@ -49,7 +49,7 @@ public class Post {
 }
 
 class JsonDateSerializer extends JsonSerializer<LocalDateTime> {
-	private static final  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm");
+	private static final  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm:ss");
 
 	@Override
 	public void serialize(LocalDateTime date, JsonGenerator gen, SerializerProvider provider)

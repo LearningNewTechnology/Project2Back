@@ -33,7 +33,7 @@ public class PostController {
 	public Post getPost(@RequestParam int id) {
 		Post post = null;
 		post = service.getPost(id);
-		if(post != null)
+		if (post != null)
 			return post;
 		else
 			return new Post();
@@ -45,29 +45,25 @@ public class PostController {
 	}
 
 	@GetMapping("/getUserPosts.do")
-	public List<Post> getPostsFromListUser(HttpServletRequest request) {
-		User user = (User) request.getSession().getAttribute("User");
-		return service.getPostsFromListUser(user.getId());
+	public List<Post> getPostsFromListUser(HttpServletRequest request, @RequestParam int userId) {
+		return service.getPostsFromListUser(userId);
 	}
 
 	@PostMapping("/addPost.do")
-	public Post addPost(@RequestParam(required=false, name="file") MultipartFile file, @ModelAttribute Post post, HttpServletRequest request) {
+	public Post addPost(@RequestParam(required = false, name = "file") MultipartFile file, @RequestParam int userId,
+			@ModelAttribute Post post, HttpServletRequest request) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
-		User user = (User) request.getSession().getAttribute("User");
-		if (user != null) {
-			post.setAuthorId(user.getId());
-			post.setPostedDate(now);
-			if(file != null)
-				post.setPicture(util.uploadFile(file));
-			
-			//System.out.println(post);
-			service.addPost(post);
-			return post;
-		}
-		else {
-			return new Post();
-		}
+		//User user = (User) request.getSession().getAttribute("User");
+
+		post.setAuthorId(userId);
+		post.setPostedDate(now);
+		if (file != null)
+			post.setPicture(util.uploadFile(file));
+
+		// System.out.println(post);
+		service.addPost(post);
+		return post;
 	}
 
 	public void updatePost() {
