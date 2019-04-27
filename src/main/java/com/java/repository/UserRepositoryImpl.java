@@ -56,12 +56,30 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public void updateUser(User currUser) {
-		
+	public void updateUser(User currUser) {		
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
+		Query<User> q1 = s.createQuery("From User Where id = :uId", User.class);
+		q1.setParameter("uId", currUser.getId());
+		User user = q1.uniqueResult();
+		
+		if(currUser.getEmail() != null)
+			user.setEmail(currUser.getEmail());
+		if(currUser.getFirstName() != null)
+			user.setFirstName(currUser.getFirstName());
+		if(currUser.getLastName() != null)
+			user.setLastName(currUser.getLastName());
+		if(currUser.getProfilePic() != null)
+			user.setProfilePic(currUser.getProfilePic());
+		if(currUser.getUsername() != null) {
+			Query<User> q2 = s.createQuery("From User Where username = :uUsername", User.class);
+			q2.setParameter("uUsername", currUser.getUsername());
+			User existingUser = q2.uniqueResult();
+			if(existingUser == null)
+				user.setUsername(currUser.getUsername());
+		}
 		//s.merge(currUser);
-		s.update(currUser);
+		s.update(user);
 		tx.commit();
 		s.close();
 	}

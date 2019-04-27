@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +33,10 @@ public class UserController {
 	public User getUser(@RequestParam String username) {
 		User user = null;
 		user = service.getUser(username);
-		return user;
+		if(user != null)
+			return user;
+		else
+			return new User();
 	}
 
 	@GetMapping("/getUsers.do")
@@ -40,9 +45,10 @@ public class UserController {
 		list = service.getUsers();
 		return list;
 	}
-
-	@PutMapping("/updateUser.do")
-	public User updateUser(@RequestBody User user, @RequestParam(required=false) MultipartFile file,HttpServletRequest request) {
+	//Test this method
+	@PostMapping("/updateUser.do")
+	public User updateUser(@RequestParam(required=false) MultipartFile file, @ModelAttribute User user, HttpServletRequest request) {
+		System.out.println(user);
 		User currUser = (User) request.getSession().getAttribute("User");
 		if (currUser != null) {
 			user.setId(currUser.getId());

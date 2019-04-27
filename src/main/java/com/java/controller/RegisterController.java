@@ -32,7 +32,8 @@ public class RegisterController {
 	@Autowired
 	private RegisterService service;
 
-	@PostMapping(consumes={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},produces="application/json")
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE }, produces = "application/json")
 	public String registerUser(@RequestBody User user, HttpServletResponse response) {
 
 		// validate email
@@ -47,9 +48,15 @@ public class RegisterController {
 		if (user.getPassword().length() < 8 || user.getPassword().length() > 30) {
 			return "{\"Status\":\"Fail\"}";
 		}
-		service.addUser(user);
-		logger.info("Register successful");
-		return "{\"Status\":\"Success\"}";
+		User newUser = service.addUser(user);
+		if (newUser != null) {
+			logger.info("Register successful");
+			return "{\"Status\":\"Success\"}";
+		}
+		else {
+			logger.info("Register fail");
+			return "{\"Status\":\"Fail\"}";
+		}
 	}
 
 }

@@ -37,12 +37,12 @@ public class LikeController {
 	}
 
 	@DeleteMapping("/unlike.do")
-	public void deleteLike(@RequestBody int postId, HttpServletRequest request) {
+	public void deleteLike(@RequestBody PostId postId, HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("User");
 		if(user != null) {
 			Like like = new Like();
 			like.setUserId(user.getId());
-			like.setPostId(postId);
+			like.setPostId(postId.postId);
 			service.deleteLike(like);
 		}
 		

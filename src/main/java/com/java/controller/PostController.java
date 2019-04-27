@@ -31,7 +31,12 @@ public class PostController {
 
 	@GetMapping("/getPost.do")
 	public Post getPost(@RequestParam int id) {
-		return service.getPost(id);
+		Post post = null;
+		post = service.getPost(id);
+		if(post != null)
+			return post;
+		else
+			return new Post();
 	}
 
 	@GetMapping("/getPosts.do")

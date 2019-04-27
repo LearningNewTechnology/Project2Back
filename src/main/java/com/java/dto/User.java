@@ -14,6 +14,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name="users",
 		uniqueConstraints = @UniqueConstraint(columnNames={"username", "email"})		
 )
+@DynamicUpdate(value=true)
 public class User {
 	@GeneratedValue
 	@Id
