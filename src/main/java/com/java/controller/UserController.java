@@ -54,8 +54,7 @@ public class UserController {
 		if (file != null)
 			user.setProfilePic(util.uploadFile(file));
 
-		service.updateUser(user);
-		return user;
+		return service.updateUser(user);
 	}
 
 	@GetMapping("/searchUsers.do")
