@@ -56,13 +56,13 @@ public class PostController {
 		LocalDateTime now = LocalDateTime.now();
 		//User user = (User) request.getSession().getAttribute("User");
 
-		post.setAuthorId(userId);
+		//post.setAuthorId(userId);
 		post.setPostedDate(now);
 		if (file != null)
 			post.setPicture(util.uploadFile(file));
 
 		// System.out.println(post);
-		service.addPost(post);
+		service.addPost(post, userId);
 		return post;
 	}
 

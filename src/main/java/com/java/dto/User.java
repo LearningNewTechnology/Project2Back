@@ -1,5 +1,6 @@
 package com.java.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.JsonAdapter;
 
 import lombok.Data;
@@ -33,7 +35,7 @@ import lombok.NoArgsConstructor;
 		}
 )
 @DynamicUpdate(value=true)
-public class User {
+public class User implements Serializable{
 	@GeneratedValue
 	@Id
 	private
@@ -53,8 +55,9 @@ public class User {
 	@NotNull
 	String lastName;
 	String profilePic;
-	@OneToMany(mappedBy="authorId", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="author", cascade=CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnoreProperties("author")
 	List<Post> postList; //Post.id?
 	@OneToMany(mappedBy="userId", cascade=CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)

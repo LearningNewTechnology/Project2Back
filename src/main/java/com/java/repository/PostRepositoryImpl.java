@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.java.dto.Post;
+import com.java.dto.User;
 
 @Repository
 public class PostRepositoryImpl implements PostRepository{
@@ -21,10 +22,12 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public Post getPostById(int postId) {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post Where id = :pId", Post.class);
+		Query<Post> q = s.createQuery("From Post Where pId = :pId", Post.class);
 		q.setParameter("pId", postId);
 		Post currPost = q.uniqueResult();
 		s.close();
+		System.out.println(currPost);
+		System.out.println("author = " + currPost.getAuthor());
 		return currPost;
 	}
 
@@ -43,15 +46,23 @@ public class PostRepositoryImpl implements PostRepository{
 	public void updatePost(Post currPost) {
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
+		
 		s.update(currPost);
 		tx.commit();
 		s.close();
 	}
 
 	@Override
-	public void insertPost(Post currPost) {
+	public void insertPost(Post currPost, int userId) {
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
+		Query<User> q = s.createQuery("From User Where id = :uId", User.class);
+		q.setParameter("uId", userId);
+		User currUser = q.uniqueResult();
+		//currPost.setAuthorId(userId);
+		System.out.println(currUser);
+		currPost.setAuthor(currUser);
+		System.out.println(currPost.getAuthor());
 		s.save(currPost);
 		tx.commit();
 		s.close();

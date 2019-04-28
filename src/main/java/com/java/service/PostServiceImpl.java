@@ -24,8 +24,8 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public void addPost(Post post) {
-		rep.insertPost(post);
+	public void addPost(Post post, int userId) {
+		rep.insertPost(post, userId);
 	}
 
 	@Override

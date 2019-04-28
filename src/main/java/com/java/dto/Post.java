@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,7 +32,7 @@ import lombok.NoArgsConstructor;
 public class Post {
 	@Id
 	@GeneratedValue
-	int id;
+	int pId;
 	@JsonSerialize(using = JsonDateSerializer.class)
 	@NotNull
 	LocalDateTime postedDate;
@@ -38,14 +41,27 @@ public class Post {
 	String description;
 	String picture;
 
-	//@ManyToOne
-	@NotNull
-	int authorId;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	/*@JoinColumns({
+		@JoinColumn(name="id", referencedColumnName="id"),
+		@JoinColumn(name="username", referencedColumnName="username"),
+		@JoinColumn(name="profilePic", referencedColumnName="profilePic")
+	})*/
+	//@NotNull
+	User author;
+	//int authorId;
 	@OneToMany(mappedBy = "postId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	List<Like> likedBy; // userId
 	/*
 	 * @OneToMany(mappedBy="userId") List<Like> like;
 	 */
+	@Override
+	public String toString() {
+		return "Post [pId=" + pId + ", postedDate=" + postedDate + ", description=" + description + ", picture="
+				+ picture + ", author=" + author.getUsername() + ", likedBy=" + likedBy + "]";
+	}
+	
+	
 }
 
 class JsonDateSerializer extends JsonSerializer<LocalDateTime> {
