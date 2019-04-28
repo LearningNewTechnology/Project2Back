@@ -1,6 +1,5 @@
 package com.java.repository;
 
-
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -18,19 +17,20 @@ import com.java.controller.MD5;
 import com.java.dto.User;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl implements UserRepository {
 
-	@Autowired 
+	@Autowired
 	@Qualifier("sessionFactory")
 	SessionFactory sf;
-	
+
 	@Override
-	public User getUserByUsername(String username/*, String hashedPassword*/) {
+	public User getUserByUsername(String username/* , String hashedPassword */) {
 		Session s = sf.openSession();
-		//Query<User> q = s.createQuery("From User Where username = :uName And password = :uPass", User.class);
+		// Query<User> q = s.createQuery("From User Where username = :uName And password
+		// = :uPass", User.class);
 		Query<User> q = s.createQuery("From User Where username = :uName", User.class);
 		q.setParameter("uName", username);
-		//q.setParameter("uPass", hashedPassword);
+		// q.setParameter("uPass", hashedPassword);
 		User currUser = q.uniqueResult();
 		s.close();
 		return currUser;
@@ -43,22 +43,20 @@ public class UserRepositoryImpl implements UserRepository{
 		q.setParameter("uId", userId);
 		User currUser = q.uniqueResult();
 		s.close();
-		return currUser;	
+		return currUser;
 	}
 
 	@Override
 	public User registerUser(User newUser) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
-		//encrypt before save
-		MD5 encryption= new MD5();
-		//System.out.println(encryption.encrypt(newUser.getPassword()));
+		// encrypt before save
+		MD5 encryption = new MD5();
 		newUser.setPassword(encryption.encrypt(newUser.getPassword()));
 		s.save(newUser);
 		try {
 			tx.commit();
-		}
-		catch(PersistenceException e) {
+		} catch (PersistenceException e) {
 			System.out.println(e.getMessage());
 			s.close();
 			return null;
@@ -73,8 +71,7 @@ public class UserRepositoryImpl implements UserRepository{
 		Transaction tx = s.beginTransaction();
 		Query<User> q1 = s.createQuery("From User Where id = :uId", User.class);
 		q1.setParameter("uId", currUser.getId());
-		User user = q1.uniqueResult();
-		
+		User user = q1.uniqueResult();	
 		if(currUser.getEmail() != null) {
 			Query<User> q2 = s.createQuery("From User Where email = :uEmail", User.class);
 			q2.setParameter("uEmail", currUser.getEmail());
@@ -84,9 +81,9 @@ public class UserRepositoryImpl implements UserRepository{
 		}
 		if(currUser.getFirstName() != null)
 			user.setFirstName(currUser.getFirstName());
-		if(currUser.getLastName() != null)
+		if (currUser.getLastName() != "")
 			user.setLastName(currUser.getLastName());
-		if(currUser.getProfilePic() != null)
+		if (currUser.getProfilePic() != "")
 			user.setProfilePic(currUser.getProfilePic());
 		if(currUser.getUsername() != null) {
 			Query<User> q3 = s.createQuery("From User Where username = :uUsername", User.class);
@@ -95,7 +92,11 @@ public class UserRepositoryImpl implements UserRepository{
 			if(existingUser == null)
 				user.setUsername(currUser.getUsername());
 		}
-		//s.merge(currUser);
+		if (currUser.getPassword() != "") {
+			MD5 encryption = new MD5();
+			user.setPassword(encryption.encrypt(currUser.getPassword()));
+		}
+		// s.merge(currUser);
 		s.update(user);
 		tx.commit();
 		Query<User> q4 = s.createQuery("From User Where id = :uId", User.class);
@@ -118,10 +119,10 @@ public class UserRepositoryImpl implements UserRepository{
 	public List<User> getUserslikeUsername(String usrname) {
 		Session s = sf.openSession();
 		Query<User> q = s.createQuery("From User Where Username Like :uName", User.class);
-		q.setParameter("uName", "%"+usrname+"%");
+		q.setParameter("uName", "%" + usrname + "%");
 		List<User> list = q.list();
 		s.close();
 		return list;
-		
+
 	}
 }

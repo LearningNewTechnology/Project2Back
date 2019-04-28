@@ -13,7 +13,6 @@ public class RegisterServiceImpl implements RegisterService{
 	@Override
 	public User addUser(User user) {
 		return rep.registerUser(user);
-		//return null;
 	}
 
 }

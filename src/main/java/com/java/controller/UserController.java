@@ -33,7 +33,7 @@ public class UserController {
 	public User getUser(@RequestParam String username) {
 		User user = null;
 		user = service.getUser(username);
-		if(user != null)
+		if (user != null)
 			return user;
 		else
 			return new User();
@@ -45,26 +45,21 @@ public class UserController {
 		list = service.getUsers();
 		return list;
 	}
-	//Test this method
+
+	// Test this method
 	@PostMapping("/updateUser.do")
-	public User updateUser(@RequestParam(required=false) MultipartFile file, @ModelAttribute User user, HttpServletRequest request) {
+	public User updateUser(@RequestParam(required = false) MultipartFile file, @ModelAttribute User user,
+			HttpServletRequest request) {
 		System.out.println(user);
-		User currUser = (User) request.getSession().getAttribute("User");
-		if (currUser != null) {
-			user.setId(currUser.getId());
-			if(file != null)
-				user.setProfilePic(util.uploadFile(file));
-			
-			service.updateUser(user);
-			return user;
-		}
-		else {
-			return new User();
-		}
+		if (file != null)
+			user.setProfilePic(util.uploadFile(file));
+
+		service.updateUser(user);
+		return user;
 	}
 
 	@GetMapping("/searchUsers.do")
-	public Set<User> searchUsers(@RequestParam String username){
+	public Set<User> searchUsers(@RequestParam String username) {
 		return service.searchUsers(username);
 	}
 }
