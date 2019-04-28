@@ -81,9 +81,9 @@ public class UserRepositoryImpl implements UserRepository {
 		}
 		if(currUser.getFirstName() != null)
 			user.setFirstName(currUser.getFirstName());
-		if (currUser.getLastName() != "")
+		if (currUser.getLastName() != null)
 			user.setLastName(currUser.getLastName());
-		if (currUser.getProfilePic() != "")
+		if (currUser.getProfilePic() != null)
 			user.setProfilePic(currUser.getProfilePic());
 		if(currUser.getUsername() != null) {
 			Query<User> q3 = s.createQuery("From User Where username = :uUsername", User.class);
@@ -92,7 +92,7 @@ public class UserRepositoryImpl implements UserRepository {
 			if(existingUser == null)
 				user.setUsername(currUser.getUsername());
 		}
-		if (currUser.getPassword() != "") {
+		if (currUser.getPassword() != null) {
 			MD5 encryption = new MD5();
 			user.setPassword(encryption.encrypt(currUser.getPassword()));
 		}
