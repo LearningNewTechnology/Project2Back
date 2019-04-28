@@ -8,6 +8,6 @@ import com.java.dto.User;
 public interface UserService {
 	public User getUser(String username);
 	public List<User> getUsers();
-	public void updateUser(User user);
+	public User updateUser(User user);
 	public Set<User> searchUsers(String username);
 }

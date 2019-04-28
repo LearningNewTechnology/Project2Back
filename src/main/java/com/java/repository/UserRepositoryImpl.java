@@ -68,15 +68,20 @@ public class UserRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public void updateUser(User currUser) {		
+	public User updateUser(User currUser) {		
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
 		Query<User> q1 = s.createQuery("From User Where id = :uId", User.class);
 		q1.setParameter("uId", currUser.getId());
 		User user = q1.uniqueResult();
 		
-		if(currUser.getEmail() != null)
-			user.setEmail(currUser.getEmail());
+		if(currUser.getEmail() != null) {
+			Query<User> q2 = s.createQuery("From User Where email = :uEmail", User.class);
+			q2.setParameter("uEmail", currUser.getEmail());
+			User existingUser = q2.uniqueResult();
+			if(existingUser == null)
+				user.setEmail(currUser.getEmail());
+		}
 		if(currUser.getFirstName() != null)
 			user.setFirstName(currUser.getFirstName());
 		if(currUser.getLastName() != null)
@@ -84,16 +89,20 @@ public class UserRepositoryImpl implements UserRepository{
 		if(currUser.getProfilePic() != null)
 			user.setProfilePic(currUser.getProfilePic());
 		if(currUser.getUsername() != null) {
-			Query<User> q2 = s.createQuery("From User Where username = :uUsername", User.class);
-			q2.setParameter("uUsername", currUser.getUsername());
-			User existingUser = q2.uniqueResult();
+			Query<User> q3 = s.createQuery("From User Where username = :uUsername", User.class);
+			q3.setParameter("uUsername", currUser.getUsername());
+			User existingUser = q3.uniqueResult();
 			if(existingUser == null)
 				user.setUsername(currUser.getUsername());
 		}
 		//s.merge(currUser);
 		s.update(user);
 		tx.commit();
+		Query<User> q4 = s.createQuery("From User Where id = :uId", User.class);
+		q4.setParameter("uId", currUser.getId());
+		User userReturn = q4.uniqueResult();
 		s.close();
+		return userReturn;
 	}
 
 	@Override

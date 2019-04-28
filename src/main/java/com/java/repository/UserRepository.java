@@ -9,6 +9,6 @@ public interface UserRepository {
 	public User getUserById(int userId);
 	public List<User> getUsers();
 	public User registerUser(User newUser);
-	public void updateUser(User currUser);
+	public User updateUser(User currUser);
 	public List<User> getUserslikeUsername(String usrname);
 }
