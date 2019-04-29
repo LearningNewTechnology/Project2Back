@@ -50,7 +50,7 @@ public class PostController {
 	}
 
 	@PostMapping("/addPost.do")
-	public Post addPost(@RequestParam(required = false, name = "file") MultipartFile file, @RequestParam int userId,
+	public User addPost(@RequestParam(required = false, name = "file") MultipartFile file, @RequestParam int userId,
 			@ModelAttribute Post post, HttpServletRequest request) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
@@ -62,8 +62,8 @@ public class PostController {
 			post.setPicture(util.uploadFile(file));
 
 		// System.out.println(post);
-		service.addPost(post, userId);
-		return post;
+		return service.addPost(post, userId);
+		//return post;
 	}
 
 	public void updatePost() {

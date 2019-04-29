@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.Post;
+import com.java.dto.User;
 import com.java.repository.PostRepository;
 
 @Service
@@ -24,8 +25,8 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public void addPost(Post post, int userId) {
-		rep.insertPost(post, userId);
+	public User addPost(Post post, int userId) {
+		return rep.insertPost(post, userId);
 	}
 
 	@Override

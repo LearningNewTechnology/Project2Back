@@ -34,7 +34,7 @@ public class PostRepositoryImpl implements PostRepository{
 	@Override
 	public List<Post> getPostsOfUser(int userId) {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post Where authorId = :uId Order By postedDate DESC", Post.class);
+		Query<Post> q = s.createQuery("From Post Where author.id = :uId Order By pId DESC", Post.class);
 		q.setParameter("uId", userId);
 		List<Post> posts = q.list();
 		s.close();
@@ -53,25 +53,29 @@ public class PostRepositoryImpl implements PostRepository{
 	}
 
 	@Override
-	public void insertPost(Post currPost, int userId) {
+	public User insertPost(Post currPost, int userId) {
 		Session s=sf.openSession();
 		Transaction tx = s.beginTransaction();
 		Query<User> q = s.createQuery("From User Where id = :uId", User.class);
 		q.setParameter("uId", userId);
 		User currUser = q.uniqueResult();
 		//currPost.setAuthorId(userId);
-		System.out.println(currUser);
 		currPost.setAuthor(currUser);
-		System.out.println(currPost.getAuthor());
 		s.save(currPost);
 		tx.commit();
+		//Query<Post> q2 = s.createQuery("From Post Order By pId DESC LIMIT 1", Post.class);
+		//Post newPost = q2.uniqueResult();
+		Query<User> q2 = s.createQuery("From User Where id = :uId", User.class);
+		q2.setParameter("uId", userId);
+		User updatedUser = q2.uniqueResult();
 		s.close();
+		return updatedUser;
 	}
 
 	@Override
 	public List<Post> getPosts() {
 		Session s = sf.openSession();
-		Query<Post> q = s.createQuery("From Post Order By postedDate DESC", Post.class);
+		Query<Post> q = s.createQuery("From Post Order By pId DESC", Post.class);
 		List<Post> posts = q.list();
 		s.close();
 		return posts;

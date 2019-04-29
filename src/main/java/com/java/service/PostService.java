@@ -5,13 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.java.dto.Post;
+import com.java.dto.User;
 
 public interface PostService {
 	public Post getPost(int id);
 
 	public List<Post> getPosts();
 
-	public void addPost(Post post, int userId);
+	public User addPost(Post post, int userId);
 
 	public List<Post> getPostsFromListUser(int id);
 
