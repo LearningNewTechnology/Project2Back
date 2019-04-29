@@ -65,10 +65,15 @@ public class PostRepositoryImpl implements PostRepository{
 		tx.commit();
 		//Query<Post> q2 = s.createQuery("From Post Order By pId DESC LIMIT 1", Post.class);
 		//Post newPost = q2.uniqueResult();
+		s.close();
+		
+		s=sf.openSession();
 		Query<User> q2 = s.createQuery("From User Where id = :uId", User.class);
 		q2.setParameter("uId", userId);
 		User updatedUser = q2.uniqueResult();
 		s.close();
+		
+		System.out.println("This is updated user: " + updatedUser);
 		return updatedUser;
 	}
 

@@ -55,7 +55,7 @@ public class User implements Serializable{
 	@NotNull
 	String lastName;
 	String profilePic;
-	@OneToMany(mappedBy="author", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="author", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnoreProperties("author")
 	List<Post> postList; //Post.id?
